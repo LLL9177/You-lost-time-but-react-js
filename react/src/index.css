@@ -1,0 +1,304 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.dimmer {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  transition: opacity 2s ease;
+}
+
+.hidden {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.fully_hidden {
+  display: none !important;
+}
+
+button {
+  cursor: pointer;
+}
+
+#h1 {
+  margin-top: 17vh;
+  margin-bottom: 21vh;
+  font-size: 60px;
+  color: white;
+  font-family: "Radley", serif;
+  font-weight: 400;
+  z-index: 5;
+}
+
+.time-lost-counter {
+  color: white;
+  font-size: 45px;
+  margin-bottom: 21vh;
+  font-family: "Momo Signature", cursive;
+  font-style: normal;
+  text-shadow: 0px 0px 10px white;
+  z-index: 5;
+}
+
+label {
+  color: white;
+  font-family: "Radley", serif;
+  margin-bottom: 5vh;
+  font-size: 20px;
+  z-index: 5;
+}
+
+.register-again {
+  color: #DDDD;
+  margin-top: 12vh;
+  background-color: #171717;
+  width: 500px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  border: none;
+  font-family: "Radley", serif;
+  font-size: 18px;
+  z-index: 5;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  appearance: textfield;
+}
+
+.lost-time_form {
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+}
+
+
+.lost-time_form input, .lost-time_form button {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  color: white;
+  border: 1px solid rgba(35, 35, 35, 0);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.lost-time_form input {
+  transition: border-bottom, 0.1s ease;
+}
+
+.lost-time_form input:focus {
+  outline: none;
+  border-bottom: 1px solid white;
+}
+
+
+.popup-register {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  color: white;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 30px;
+  width: 400px;
+  height: 550px;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  flex-direction: column;
+  text-align: center;
+  z-index: 15;
+  transition: opacity 0.5s ease, transform 0.3s ease-in-out;
+}
+
+.popup-register form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-register input {
+  margin-bottom: 2%;
+  width: 300px;
+  height: 40px;
+}
+
+.popup-register button {
+  height: 30px;
+  font-size: 15px;
+}
+
+.popup-register h1 {
+  display: flex;
+  font-size: 25px;
+  margin: 15px;
+  margin-bottom: 10%;
+}
+
+.popup-dimmer {
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  z-index: 14
+}
+
+.flashes {
+  position: absolute;
+  z-index: 20;
+  background-color: rgb(25, 25, 25);
+  left: 100%;
+  top: 10px;
+  transform: translateX(-101%);
+  width: 450px;
+  height: fit-content;
+  color: white;
+  font-size: 13px;
+  transition: opacity 0.5s ease;
+}
+
+.flashes p {
+  padding: 10px;
+}
+
+.timer-line {
+  height: 2px;
+  width: 100%;
+  background-color: aquamarine;
+}
+
+.saved-losses {
+  height: 50px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border-radius: 10px;
+  z-index: 5;
+  transition: transform 0.3s ease;
+}
+
+.popup-losses {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 450px;
+  height: 100%;
+  background-color: white;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popup-losses_content {
+  height: 90%;
+  width: 100%;
+  padding: 10px;
+  transition: transform 1.5s ease-in-out;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.popup-losses_content::-webkit-scrollbar {
+  display: none;
+}
+
+.popup-losses_name {
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.losses-day {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin: -1px 0;
+  position: absolute;
+  width: 96%;
+}
+
+.dropdown-arrow_container {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  height: 50%;
+  width: 5%;
+  font-size: 40px
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-50%);
+  user-select: none;
+  line-height: 1px;
+  transition: transform, 0.08s ease-in-out;
+}
+
+.dropdown-arrow.open {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.more-info {
+  width: 100%;
+  height: fit-content;
+  bottom: 0;
+  visibility: hidden;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.more-info_pair {
+  display: flex;
+  flex-direction: row;
+}
+
+.loss_some-line {
+  background-color: black;
+  position: absolute;
+  right: 30px;
+  top: -5px;
+  width: 2px;
+  align-self: stretch;
+  right: 35px;
+  z-index: 7;
+}
+
+.lost-in-day {
+  transition: padding-bottom 0.2s ease;
+}
