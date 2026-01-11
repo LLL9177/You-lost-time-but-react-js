@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../UserContext";
+import { UserAgentTypeContext } from "../UserAgentType";
 
 function convertMinutes(minutes) {
   class Converter  {
@@ -36,14 +37,15 @@ function convertMinutes(minutes) {
 }
 
 export default function TimeLostCounter() {
-    const user = useContext(UserContext);
-    let lost = "loading...";
-    if (typeof user == "object") {
-        lost = convertMinutes(user.time_value);
-    }
-    return (
-        <h1 className="time-lost-counter">
-            {lost}
-        </h1>
-    )
+  const deviceType = useContext(UserAgentTypeContext)
+  const user = useContext(UserContext);
+  let lost = "loading...";
+  if (typeof user == "object") {
+      lost = convertMinutes(user.time_value);
+  }
+  return (
+      <h1 className={deviceType == "desktop" ? "time-lost-counter" : "time-lost-counter_MOBILE"}>
+          {lost}
+      </h1>
+  )
 }

@@ -2,10 +2,12 @@ import { useState, useContext } from "react";
 import { BACKENDURLContext } from "../BackendURLContext";
 import { UserContext } from "../UserContext";
 import { fetchData } from "../fetchData";
+import { UserAgentTypeContext } from "../UserAgentType";
 
 export default function LostTimeForm({ setMessage, resetUser }) {
     const [lostTime, setLostTime] = useState('');
     const BACKENDURL = useContext(BACKENDURLContext);
+    const deviceType = useContext(UserAgentTypeContext)
     const user = useContext(UserContext);
 
     function handleSubmit(e) {
@@ -24,7 +26,7 @@ export default function LostTimeForm({ setMessage, resetUser }) {
     }
     
     return (
-        <form className="lost-time_form" onSubmit={handleSubmit}>
+        <form className={deviceType == "desktop" ? "lost-time_form" : "lost-time_form_MOBILE"} onSubmit={handleSubmit}>
             <input 
                 type="number" 
                 name="time_lost" 
@@ -35,7 +37,7 @@ export default function LostTimeForm({ setMessage, resetUser }) {
             <button
                 type="submit"
             >
-                Submit my time
+                Submit {deviceType == "desktop" ? "my time" : ''}
             </button>
         </form>
     )

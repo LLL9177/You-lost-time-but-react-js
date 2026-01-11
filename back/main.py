@@ -88,15 +88,6 @@ def get_user_data():
             "error": error
         }
 
-    print(
-        {"user": {
-            "id": user["id"],
-            "username": user["username"],
-            "password": user["password"],
-            "time_value": user["time_value"],
-            "creation_date": user["current_date"].strftime("%Y-%m-%d")
-    }})
-
     return {
         "user": {
             "id": user["id"],
@@ -125,8 +116,6 @@ def get_day_data():
     
     if error is not None:
         return error
-    
-    print(data)
     
     return data
 
@@ -183,7 +172,6 @@ def post_time():
     error = None
 
     user = db.execute("SELECT * FROM user WHERE username = ?", (username,)).fetchone()
-    print(user["time_value"])
     day_data = db.execute("SELECT * FROM days WHERE username = ?", (username,)).fetchone()
 
     if user is None:
@@ -198,7 +186,6 @@ def post_time():
             day_data[today] = {}
 
         if day_data != {} and now in day_data[today]:
-            print("it's working correctly.")
             day_data_value = day_data[today][now] + d_time
         else:
             day_data_value = d_time

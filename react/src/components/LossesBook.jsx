@@ -2,13 +2,15 @@ import { useEffect, useContext, useState, useRef } from "react";
 import { fetchData } from "../fetchData";
 import { BACKENDURLContext } from "../BackendURLContext";
 import { UserContext } from "../UserContext";
+import { UserAgentTypeContext } from "../UserAgentType";
 
 export default function LossesBook() {
   const [dayData, setDayData] = useState(null);
   const [open, setOpen] = useState(false);
 
   const BACKENDURL = useContext(BACKENDURLContext);
-  const user = useContext(UserContext)
+  const deviceType = useContext(UserAgentTypeContext);
+  const user = useContext(UserContext);
   let username = null;
   if (user != "user") {
     username = user.username;
@@ -29,11 +31,21 @@ export default function LossesBook() {
     setOpen(prev => !prev);
 
     if (!open) {
-      popupRef.current.style.transform = "translateX(0)";
-      imgRef.current.style.transform = "translateX(450px)";
+      if (deviceType == "desktop") {
+        popupRef.current.style.transform = "translateX(0)";
+        imgRef.current.style.transform = "translateX(450px)";
+      } else {
+        popupRef.current.style.transform = "translateY(0)";
+        imgRef.current.style.transform = "translateY(450px)";
+      }
     } else {
-      popupRef.current.style.transform = "translateX(-100%)";
-      imgRef.current.style.transform = "translateX(0)";
+      if (deviceType == "desktop") {
+        popupRef.current.style.transform = "translateX(-100%)";
+        imgRef.current.style.transform = "translateX(0)";
+      } else {
+        popupRef.current.style.transform = "translateY(-100%)";
+        imgRef.current.style.transform = "translateY(0)";
+      }
     }
   }
 
@@ -45,13 +57,14 @@ export default function LossesBook() {
         ref={imgRef}
         src="./book-icon.jpg"
         onClick={lossesImgClick}
-        className="saved-losses"
+        className={deviceType == "desktop" ? "saved-losses" : "saved-losses_MOBILE"}
       />
 
-      <div ref={popupRef} className="popup-losses">
-        <h2 className="popup-losses_name">Your time losses book</h2>
+      <div ref={popupRef} className={deviceType == "desktop" ? "popup-losses" : "popup-losses_MOBILE"} >
+        <CloseCross clickFunction={lossesImgClick} />
+        <h2 className={deviceType == "desktop" ? "popup-losses_name" : "popup-losses_name_MOBILE"}>Your time losses book</h2>
 
-        <div className="popup-losses_content">
+        <div className={deviceType == "desktop" ? "popup-losses_content" : "popup-losses_content_MOBILE"}>
           {Object.entries(dayData).map(([date, data], index) => (
             <LossesDay
               key={date}
@@ -72,6 +85,7 @@ function LossesDay({ index, data, open }) {
   const sectionRef = useRef(null);
   const moreInfoRef = useRef(null);
   const lineRef = useRef(null);
+  const deviceType = useContext(UserAgentTypeContext);
 
   const [arrowOpen, setArrowOpen] = useState(false);
   const isAnimating = useRef(false);
@@ -82,14 +96,25 @@ function LossesDay({ index, data, open }) {
     sectionRef.current.style.transition = "transform 0.5s ease";
 
     if (open) {
-      sectionRef.current.style.transform = "translateX(-100%)";
-      setTimeout(() => {
-        sectionRef.current.style.transform = "translateX(0)";
-      }, index * 80);
+      if (deviceType == "desktop") {
+        sectionRef.current.style.transform = "translateX(-100%)";
+        setTimeout(() => {
+          sectionRef.current.style.transform = "translateX(0)";
+        }, index * 80);
+      } else {
+        sectionRef.current.style.transform = "translateY(-100%)";
+        setTimeout(() => {
+          sectionRef.current.style.transform = "translateY(0)";
+        }, index * 80);
+      }
     } else {
-      sectionRef.current.style.transform = "translateX(-100%)";
+      if (deviceType == "desktop") {
+        sectionRef.current.style.transform = "translateX(-100%)";
+      } else {
+        sectionRef.current.style.transform = "translateY(-100%)";
+      }
     }
-  }, [open, index]);
+  }, [open, index, deviceType]);
 
   function handleDropdownArrowClick(e) {
     if (isAnimating.current) return;
@@ -160,7 +185,7 @@ function LossesDay({ index, data, open }) {
       </div>
 
       <div ref={moreInfoRef} className="more-info">
-        <div ref={lineRef} className="loss_some-line"></div>
+        <div ref={lineRef} className={deviceType == "desktop" ? "loss_some-line" : "loss_some-line_MOBILE"}></div>
         {parseObj(data).map(({ time, value }) => (
           <Pair key={time} timeOfDay={time} lostTime={value} />
         ))}
@@ -217,8 +242,21 @@ function Pair({ timeOfDay, lostTime }) {
   return (
     <div className="more-info_pair">
       <span className="time-of-day">{timeOfDay}</span>
-      &nbsp;
-      <p className="popup-losses_lost-time">{lostTime}</p>
+      :&nbsp;
+      <p className="popup-losses_lost-time">{convertMinutes(lostTime)}</p>
     </div>
   );
+}
+
+function CloseCross({clickFunction}) {
+  const deviceType = useContext(UserAgentTypeContext);
+  if (deviceType != "mobile") return null;
+
+  return (
+    <img 
+      src="./public/cross.png"
+      class="losses_close-cross"
+      onClick={clickFunction}
+    />
+  )
 }

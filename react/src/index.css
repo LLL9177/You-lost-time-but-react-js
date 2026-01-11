@@ -241,8 +241,8 @@ input[type=number] {
 }
 
 .losses-day {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
   margin: -1px 0;
   position: absolute;
   width: 96%;
@@ -301,4 +301,213 @@ input[type=number] {
 
 .lost-in-day {
   transition: padding-bottom 0.2s ease;
+}
+
+/* ===================== FOR MOBILE ===================== */
+#h1_MOBILE {
+  margin-bottom: 200px;
+  font-size: 60px;
+  color: white;
+  font-family: "Radley", serif;
+  font-weight: 400;
+  text-align: center;
+  z-index: 5;
+}
+
+.time-lost-counter_MOBILE {
+  color: white;
+  font-size: 100px;
+  margin-bottom: 400px;
+  font-family: "Momo Signature", cursive;
+  font-style: normal;
+  text-shadow: 0px 0px 10px white;
+  z-index: 5;
+}
+
+.register-again_MOBILE {
+  color: white;
+  margin-bottom: 300px;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 500px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 3px solid rgb(27, 87, 15);
+  font-family: "Radley", serif;
+  font-size: 30px;
+  align-items: center;
+  z-index: 3;
+}
+
+.lost-time_form_MOBILE {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 200px;
+    transform: scale(1.5);
+    z-index: 5;
+}
+
+.lost-time_form_MOBILE input {
+    height: 50px;
+    width: 400px;
+    font-size: 25px;
+}
+
+.lost-time_form_MOBILE button {
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+}
+
+.lost-time_form_MOBILE input, .lost-time_form_MOBILE button {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  color: white;
+  border: 1px solid rgba(35, 35, 35, 0);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.lost-time_form_MOBILE input {
+  transition: border-bottom, 0.1s ease;
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.lost-time_form_MOBILE input:focus {
+  outline: none;
+  border-bottom: 1px solid white;
+}
+
+.popup-register_MOBILE {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  color: white;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 30px;
+  width: 400px;
+  height: 550px;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  flex-direction: column;
+  text-align: center;
+  z-index: 15;
+  transition: opacity 0.5s ease, transform 0.3s ease-in-out;
+}
+
+.popup-register_MOBILE form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-register_MOBILE input {
+  margin-bottom: 20px;
+  width: 300px;
+  height: 40px;
+}
+
+.popup-register_MOBILE button {
+  height: 30px;
+  font-size: 15px;
+}
+
+.popup-register_MOBILE h1 {
+  display: flex;
+  font-size: 25px;
+  margin: 15px;
+  margin-top: -40px;
+  margin-bottom: 60px;
+}
+
+.flashes_MOBILE {
+  position: absolute;
+  z-index: 20;
+  background-color: rgb(25, 25, 25);
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  width: 90%;
+  height: fit-content;
+  color: white;
+  font-size: 30px;
+  transition: opacity 0.5s ease;
+}
+
+.flashes_MOBILE p {
+  padding: 10px;
+}
+
+.losses_close-cross {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 75px;
+  z-index: 10;
+}
+
+.saved-losses_MOBILE {
+  height: 100px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 10px;
+  z-index: 5;
+  transition: transform 0.3s ease;
+}
+
+.popup-losses_MOBILE {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  background-color: white; 
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popup-losses_content_MOBILE {
+  height: 90%;
+  width: 100%;
+  padding: 10px;
+  transition: transform 1.5s ease-in-out;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  font-size: 40px;
+}
+
+.popup-losses_content_MOBILE::-webkit-scrollbar {
+  display: none;
+}
+
+.popup-losses_name_MOBILE {
+  font-size: 50px;
+  padding: 50px;
+  text-align: center;
+}
+
+.loss_some-line_MOBILE {
+  display: none;
+}
+
+#label_MOBILE {
+  color: white;
+  font-family: "Radley", serif;
+  margin-bottom: 50px;
+  font-size: 40px;
 }

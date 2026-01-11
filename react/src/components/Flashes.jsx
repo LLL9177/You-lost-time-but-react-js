@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
+import { useContext } from "react";
+import { UserAgentTypeContext } from "../UserAgentType";
 
 export default function Flashes({ message }) {
   const [isHidden, setIsHidden] = useState(false);
+  const deviceType = useContext(UserAgentTypeContext);
 
   useEffect(() => {
     setIsHidden(false);
@@ -10,7 +13,7 @@ export default function Flashes({ message }) {
   if (!message) return null;
 
   return (
-    <div className={`flashes ${isHidden ? "hidden" : ""}`}>
+    <div className={`flashes${deviceType == "desktop" ? '' : "_MOBILE"} ${isHidden ? "hidden" : ""}`}>
       <TimerLine setHidden={setIsHidden} />
       <p>{message}</p>
     </div>

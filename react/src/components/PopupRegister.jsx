@@ -2,12 +2,14 @@ import { useContext, useState } from "react";
 import { BACKENDURLContext } from "../BackendURLContext";
 import { fetchData } from "../fetchData";
 import { setCookie } from "../cookies";
+import { UserAgentTypeContext } from "../UserAgentType";
 
 export default function PopupRegister({ isRegistered, setIsRegistered, setMessage }) {
     console.log(isRegistered);
     if (isRegistered) return null;
 
     const BACKENDURL = useContext(BACKENDURLContext);
+    const deviceType = useContext(UserAgentTypeContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -33,7 +35,7 @@ export default function PopupRegister({ isRegistered, setIsRegistered, setMessag
 
     return (
         <>
-            <div className="popup-register">
+            <div className={deviceType == "desktop" ? "popup-register" : "popup-register_MOBILE"}>
                 <h1>Seems like you don't have an account. Create a new one.</h1>
                 <form
                     onSubmit={(e) => (handleRegisterSubmit(e))}
