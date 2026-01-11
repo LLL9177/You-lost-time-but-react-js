@@ -125,9 +125,7 @@ The frontend communicates with the Flask backend at the URL specified in the `.e
 
 ## 📱 Responsive Design
 
-The project includes separate stylesheets and markup for mobile and desktop:
-- `index.html` & `index.css` - Desktop layout
-- MOBILE LAYOUT IS NOT READY YET
+The website can absolutely be used with desktop and mobile. It's up to you.
 
 ## 🔧 Technologies Used
 
