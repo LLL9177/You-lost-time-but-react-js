@@ -173,12 +173,12 @@ function LossesDay({ index, data, open }) {
   }
 
   return (
-    <section ref={sectionRef} className="losses-day">
+    <section ref={sectionRef} className={deviceType == "desktop" ? "losses-day" : "losses-day_MOBILE"}>
       <Date info={data} index={0} />
       <LostInDay info={data} />
 
       <div
-        className="dropdown-arrow_container"
+        className={deviceType == "desktop" ? "dropdown-arrow_container" : "dropdown-arrow_container_MOBILE"}
         onClick={handleDropdownArrowClick}
       >
         <span className="dropdown-arrow">&#9660;</span>

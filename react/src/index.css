@@ -49,7 +49,7 @@ button {
 .time-lost-counter {
   color: white;
   font-size: 45px;
-  margin-bottom: 21vh;
+  margin-bottom: 24vh;
   font-family: "Momo Signature", cursive;
   font-style: normal;
   text-shadow: 0px 0px 10px white;
@@ -66,7 +66,7 @@ label {
 
 .register-again {
   color: #DDDD;
-  margin-top: 12vh;
+  margin-top: 6vh;
   background-color: #171717;
   width: 500px;
   height: 40px;
@@ -241,10 +241,9 @@ input[type=number] {
 }
 
 .losses-day {
-  border-top: 3px solid black;
-  border-bottom: 3px solid black;
-  margin: -1px 0;
-  position: absolute;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  margin: -2px 0;
   width: 96%;
 }
 
@@ -261,14 +260,13 @@ input[type=number] {
   position: absolute;
   right: 0;
   top: 0;
-  transform: translateY(-50%);
   user-select: none;
   line-height: 1px;
   transition: transform, 0.08s ease-in-out;
 }
 
 .dropdown-arrow.open {
-  transform: translateY(-50%) rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .more-info {
@@ -469,7 +467,7 @@ input[type=number] {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 4;
+  z-index: 15;
   width: 100%;
   height: 100%;
   background-color: white; 
@@ -510,4 +508,25 @@ input[type=number] {
   font-family: "Radley", serif;
   margin-bottom: 50px;
   font-size: 40px;
+}
+
+.dropdown-arrow_container_MOBILE {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  height: 50%;
+  width: 5%;
+  font-size: 80px;
+}
+
+.dropdown-arrow_container_MOBILE span {
+  margin-top: 70%;
+}
+
+.losses-day_MOBILE {
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  margin: -3px 0;
+  width: 96%;
+  margin-left: 2%;
 }
